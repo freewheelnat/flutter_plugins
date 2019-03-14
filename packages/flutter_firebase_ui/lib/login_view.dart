@@ -49,7 +49,7 @@ class _LoginViewState extends State<LoginView> {
       if (googleAuth.accessToken != null) {
         try {
           FirebaseUser user = await _auth.signInWithCredential(
-              GoogleAuthProvider.getCredential()
+              GoogleAuthProvider.getCredential(accessToken: googleAuth.accessToken)
           );
 
           print(user);
@@ -66,7 +66,7 @@ class _LoginViewState extends State<LoginView> {
     if (result.accessToken != null) {
       try {
         FirebaseUser user = await _auth.signInWithCredential(
-            FacebookAuthProvider.getCredential());
+            FacebookAuthProvider.getCredential(accessToken: result.accessToken.token));
         print(user);
       } catch (e) {
         showErrorDialog(context, e.details);
